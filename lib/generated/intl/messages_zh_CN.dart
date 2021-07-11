@@ -22,6 +22,20 @@ class MessageLookup extends MessageLookupByLibrary {
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "appName": MessageLookupByLibrary.simpleMessage("骆寻"),
+        "exitBy2Click": MessageLookupByLibrary.simpleMessage("再按一次退出程序"),
+        "languageAuto": MessageLookupByLibrary.simpleMessage("系统默认"),
+        "languageChinese": MessageLookupByLibrary.simpleMessage("简体中文"),
+        "languageEnglish": MessageLookupByLibrary.simpleMessage("英语"),
+        "menuAbout": MessageLookupByLibrary.simpleMessage("关于"),
+        "menuLanguage": MessageLookupByLibrary.simpleMessage("语言"),
+        "menuLogOut": MessageLookupByLibrary.simpleMessage("退出登录"),
+        "menuSettings": MessageLookupByLibrary.simpleMessage("设置"),
+        "menuTheme": MessageLookupByLibrary.simpleMessage("主题"),
+        "navigationFind": MessageLookupByLibrary.simpleMessage("发现"),
+        "navigationHome": MessageLookupByLibrary.simpleMessage("首页"),
+        "navigationMap": MessageLookupByLibrary.simpleMessage("地图"),
+        "navigationMessage": MessageLookupByLibrary.simpleMessage("消息"),
+        "navigationMine": MessageLookupByLibrary.simpleMessage("我的"),
         "pushLabel": MessageLookupByLibrary.simpleMessage("你点击了这些次按钮：")
       };
 }

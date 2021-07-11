@@ -69,6 +69,146 @@ class S {
       args: [],
     );
   }
+
+  /// `Home`
+  String get navigationHome {
+    return Intl.message(
+      'Home',
+      name: 'navigationHome',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Find`
+  String get navigationFind {
+    return Intl.message(
+      'Find',
+      name: 'navigationFind',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Map`
+  String get navigationMap {
+    return Intl.message(
+      'Map',
+      name: 'navigationMap',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Message`
+  String get navigationMessage {
+    return Intl.message(
+      'Message',
+      name: 'navigationMessage',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Mine`
+  String get navigationMine {
+    return Intl.message(
+      'Mine',
+      name: 'navigationMine',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `click again to exit`
+  String get exitBy2Click {
+    return Intl.message(
+      'click again to exit',
+      name: 'exitBy2Click',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Settings`
+  String get menuSettings {
+    return Intl.message(
+      'Settings',
+      name: 'menuSettings',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `About`
+  String get menuAbout {
+    return Intl.message(
+      'About',
+      name: 'menuAbout',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Language`
+  String get menuLanguage {
+    return Intl.message(
+      'Language',
+      name: 'menuLanguage',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Theme`
+  String get menuTheme {
+    return Intl.message(
+      'Theme',
+      name: 'menuTheme',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `LogOut`
+  String get menuLogOut {
+    return Intl.message(
+      'LogOut',
+      name: 'menuLogOut',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Chinese`
+  String get languageChinese {
+    return Intl.message(
+      'Chinese',
+      name: 'languageChinese',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `English`
+  String get languageEnglish {
+    return Intl.message(
+      'English',
+      name: 'languageEnglish',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Auto`
+  String get languageAuto {
+    return Intl.message(
+      'Auto',
+      name: 'languageAuto',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

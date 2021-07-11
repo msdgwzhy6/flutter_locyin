@@ -3,10 +3,10 @@ class MapPage extends StatefulWidget {
   const MapPage({Key? key}) : super(key: key);
 
   @override
-  _FindPageState createState() => _FindPageState();
+  _MapPageState createState() => _MapPageState();
 }
 
-class _FindPageState extends State<MapPage> {
+class _MapPageState extends State<MapPage> {
   @override
   Widget build(BuildContext context) {
     return  Scaffold(

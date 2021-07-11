@@ -3,10 +3,10 @@ class MessagePage extends StatefulWidget {
   const MessagePage({Key? key}) : super(key: key);
 
   @override
-  _FindPageState createState() => _FindPageState();
+  _MessagePageState createState() => _MessagePageState();
 }
 
-class _FindPageState extends State<MessagePage> {
+class _MessagePageState extends State<MessagePage> {
   @override
   Widget build(BuildContext context) {
     return  Scaffold(

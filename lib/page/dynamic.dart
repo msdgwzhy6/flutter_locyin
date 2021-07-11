@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_locyin/generated/l10n.dart';
+import 'package:flutter_locyin/menu/menu.dart';
 
 class MyHomePage extends StatefulWidget {
   @override
@@ -34,6 +33,7 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: AppBar(
         title: Text(S.of(context).appName,),
       ),
+      drawer: MenuDrawer(),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -52,22 +52,8 @@ class _MyHomePageState extends State<MyHomePage> {
         onPressed: _incrementCounter,
         tooltip: 'Increment',
         child: Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
-    );
-  }
+      ),
 
-  _backDeskTop() async {
-    //初始化通信管道-设置退出到手机桌面
-    String CHANNEL = "android/back/desktop";
-    final platform = MethodChannel(CHANNEL);
-    //通知安卓返回,到手机桌面
-    try {
-      final bool out = await platform.invokeMethod('backDesktop');
-      if (out) debugPrint('返回到桌面');
-    } on PlatformException catch (e) {
-      debugPrint("通信失败(设置回退到安卓手机桌面:设置失败)");
-      print(e.toString());
-    }
-    return Future.value(false);
+    );
   }
 }

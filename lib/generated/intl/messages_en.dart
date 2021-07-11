@@ -22,6 +22,21 @@ class MessageLookup extends MessageLookupByLibrary {
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "appName": MessageLookupByLibrary.simpleMessage("LuoXun"),
+        "exitBy2Click":
+            MessageLookupByLibrary.simpleMessage("click again to exit"),
+        "languageAuto": MessageLookupByLibrary.simpleMessage("Auto"),
+        "languageChinese": MessageLookupByLibrary.simpleMessage("Chinese"),
+        "languageEnglish": MessageLookupByLibrary.simpleMessage("English"),
+        "menuAbout": MessageLookupByLibrary.simpleMessage("About"),
+        "menuLanguage": MessageLookupByLibrary.simpleMessage("Language"),
+        "menuLogOut": MessageLookupByLibrary.simpleMessage("LogOut"),
+        "menuSettings": MessageLookupByLibrary.simpleMessage("Settings"),
+        "menuTheme": MessageLookupByLibrary.simpleMessage("Theme"),
+        "navigationFind": MessageLookupByLibrary.simpleMessage("Find"),
+        "navigationHome": MessageLookupByLibrary.simpleMessage("Home"),
+        "navigationMap": MessageLookupByLibrary.simpleMessage("Map"),
+        "navigationMessage": MessageLookupByLibrary.simpleMessage("Message"),
+        "navigationMine": MessageLookupByLibrary.simpleMessage("Mine"),
         "pushLabel": MessageLookupByLibrary.simpleMessage(
             "You have pushed the button this many times:")
       };

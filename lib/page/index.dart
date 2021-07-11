@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_locyin/generated/l10n.dart';
 import 'package:flutter_locyin/page/find.dart';
 import 'package:flutter_locyin/page/map.dart';
 import 'package:flutter_locyin/page/message.dart';
@@ -16,11 +17,11 @@ class _MainHomePageState extends State<MainHomePage> {
   int _tabIndex = 0;
 
   List<BottomNavigationBarItem> getTabs(BuildContext context) => [
-        BottomNavigationBarItem(label: "动态", icon: Icon(Icons.home)),
-        BottomNavigationBarItem(label: "发现", icon: Icon(Icons.find_in_page)),
-        BottomNavigationBarItem(label: "地图", icon: Icon(Icons.map)),
-        BottomNavigationBarItem(label: "消息", icon: Icon(Icons.notifications)),
-        BottomNavigationBarItem(label: "我的", icon: Icon(Icons.person)),
+        BottomNavigationBarItem(label: S.of(context).navigationHome, icon: Icon(Icons.home)),
+        BottomNavigationBarItem(label: S.of(context).navigationFind, icon: Icon(Icons.find_in_page)),
+        BottomNavigationBarItem(label: S.of(context).navigationMap, icon: Icon(Icons.map)),
+        BottomNavigationBarItem(label: S.of(context).navigationMessage, icon: Icon(Icons.notifications)),
+        BottomNavigationBarItem(label: S.of(context).navigationMine, icon: Icon(Icons.person)),
       ];
 
   List<Widget> getTabWidget(BuildContext context) =>
@@ -48,7 +49,7 @@ class _MainHomePageState extends State<MainHomePage> {
         if(lastPopTime == null || DateTime.now().difference(lastPopTime!) > Duration(seconds: 2)){
 
           lastPopTime = DateTime.now();
-          ToastUtils.toast("再按一次退出程序");
+          ToastUtils.toast(S.of(context).exitBy2Click);
           return Future.value(false);
 
 
