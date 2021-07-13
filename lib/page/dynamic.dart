@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_locyin/generated/l10n.dart';
-import 'package:flutter_locyin/menu/menu.dart';
-
+import 'package:flutter_locyin/page/menu/menu.dart';
+import 'package:flutter_locyin/router/router.dart';
+import 'package:get/get.dart';
 class MyHomePage extends StatefulWidget {
   @override
   _MyHomePageState createState() => _MyHomePageState();
@@ -15,9 +15,12 @@ class _MyHomePageState extends State<MyHomePage> {
       _counter++;
     });
   }
+
   void _changeLocale(){
     setState(() {
-      S.load(Locale("en","US"));
+      var locale = Locale('zh', 'Hans');
+      //var locale = Locale('en','US');
+      Get.updateLocale(locale);
     });
   }
   void _makeError(){
@@ -26,12 +29,17 @@ class _MyHomePageState extends State<MyHomePage> {
     //throw new StateError('This is a Dart exception error.');
     //List<String> numList = ['1', '2']; print(numList[6]);
   }
-
+  void _testCommonRouter() {
+    Get.toNamed('/menu/settings');
+  }
+  void _testWebRouter() {
+    XRouter.goWeb("https://www.baidu.com/","百度一下","local");
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(S.of(context).appName,),
+        title: Text('appName'.tr,),
       ),
       drawer: MenuDrawer(),
       body: Center(
@@ -39,7 +47,7 @@ class _MyHomePageState extends State<MyHomePage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Text(
-              S.of(context).pushLabel,
+              'pushLabel'.tr,
             ),
             Text(
               '$_counter',
@@ -49,7 +57,8 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
+        //onPressed: _testCommonRouter,
+        onPressed: _testWebRouter,
         tooltip: 'Increment',
         child: Icon(Icons.add),
       ),

@@ -1,5 +1,4 @@
-{
-  "@@last_modified": "2021-07-09 00:02:00",
+const Map<String, String> en_US = {
   "appName": "LuoXun",
   "pushLabel": "You have pushed the button this many times:",
 
@@ -19,4 +18,4 @@
   "languageChinese": "Chinese",
   "languageEnglish": "English",
   "languageAuto": "Auto"
-}
+};

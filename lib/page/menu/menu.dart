@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_locyin/menu/about.dart';
-import 'package:flutter_locyin/menu/settings.dart';
+import 'package:flutter_locyin/page/menu/about.dart';
+import 'package:flutter_locyin/page/menu/settings.dart';
 import 'package:flutter_locyin/utils/toast.dart';
 
 class MenuDrawer extends StatelessWidget {

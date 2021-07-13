@@ -6,7 +6,6 @@ const DEFAULT_TOAST_COLOR = Color(0xFF424242);
 
 class ToastUtils {
   ToastUtils._internal();
-
   ///全局初始化Toast配置, child为MaterialApp
   static init(Widget child) {
     return OKToast(

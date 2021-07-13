@@ -1,5 +1,4 @@
-{
-  "@@last_modified": "2021-07-09 00:02:00",
+const Map<String, String> zh_Hans = {
   "appName": "骆寻",
   "pushLabel": "你点击了这些次按钮：",
 
@@ -19,4 +18,4 @@
   "languageChinese": "简体中文",
   "languageEnglish": "英语",
   "languageAuto": "系统默认"
-}
+};
