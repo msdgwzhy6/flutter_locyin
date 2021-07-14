@@ -51,7 +51,9 @@ class _MainHomePageState extends State<MainHomePage> {
         // 点击返回键的操作
 
         if(lastPopTime == null || DateTime.now().difference(lastPopTime!) > Duration(seconds: 2)){
-
+          if(Navigator.canPop(context)){
+            Navigator.pop(context);
+          }
           lastPopTime = DateTime.now();
           ToastUtils.toast('exitBy2Click'.tr);
           return Future.value(false);

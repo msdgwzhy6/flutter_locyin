@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_locyin/common/lang/translation_service.dart';
 import 'package:flutter_locyin/page/index.dart';
+import 'package:flutter_locyin/page/menu/theme.dart';
 import 'package:flutter_locyin/router/router_map.dart';
 import 'package:flutter_locyin/utils/getx.dart';
 import 'package:flutter_locyin/utils/sputils.dart';
@@ -12,14 +13,22 @@ class DefaultApp {
   static void run() {
     print("正在启动应用程序...");
     Get.put(LocaleController());
+    Get.put(DarkThemeController());
     WidgetsFlutterBinding.ensureInitialized();
-    SPUtils.init()
-        .then((value) => LocaleController.init().then ((value) => runApp(ToastUtils.init(MyApp()))));
+    SPUtils.init().then((value) =>
+        initApp().then ((value) =>
+            runApp(ToastUtils.init(MyApp()))
+          ).then((value) => afterRunApp())
+    );
   }
   //程序初始化操作
-  static void initApp() {
+  static Future<void> initApp() async{
     print("正在初始化应用程序...");
-    //LocaleController.init();
+    await LocaleController.init();
+    await DarkThemeController.init();
+  }
+  static void afterRunApp(){
+    Get.find<DarkThemeController>().isDarkTheme ? Get.changeTheme(ThemeData.dark()):Get.changeTheme(ThemeData.light());
   }
 }
 

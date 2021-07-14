@@ -26,4 +26,15 @@ class SPUtils {
     return _spf!.getString('key_locale');
   }
 
+  ///黑夜模式
+  static void saveDarkTheme() {
+    _spf!.setBool('key_dark_theme', true);
+  }
+  static void  clearDarkTheme() {
+    _spf!.remove('key_dark_theme');
+  }
+  static bool? getDarkTheme() {
+    return _spf!.getBool('key_dark_theme');
+  }
+
 }

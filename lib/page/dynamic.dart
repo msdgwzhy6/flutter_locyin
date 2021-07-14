@@ -32,6 +32,9 @@ class _MyHomePageState extends State<MyHomePage> {
   void _testCommonRouter() {
     Get.toNamed('/menu/settings');
   }
+  void _changeTheme(){
+    Get.changeTheme(Get.isDarkMode? ThemeData.light(): ThemeData.dark());
+  }
   void _testWebRouter() {
     XRouter.goWeb("https://www.baidu.com/","百度一下","local");
   }
@@ -58,7 +61,7 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
       floatingActionButton: FloatingActionButton(
         //onPressed: _testCommonRouter,
-        onPressed: _testWebRouter,
+        onPressed: _changeTheme,
         tooltip: 'Increment',
         child: Icon(Icons.add),
       ),

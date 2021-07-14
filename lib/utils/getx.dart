@@ -39,3 +39,42 @@ class LocaleController extends GetxController {
     //update();
   }
 }
+
+//昼夜模式控制器
+class DarkThemeController extends GetxController{
+
+  static bool _isDartTheme = false;
+  bool get  isDarkTheme => _isDartTheme;
+
+  void changeDarkTheme(){
+    if(_isDartTheme == true){
+      clearDarkTheme();
+    }else{
+      setDarkTheme();
+    }
+  }
+  void setDarkTheme(){
+    print("正在保存黑夜主题设置...");
+    _isDartTheme = true;
+    SPUtils.saveDarkTheme();
+    Get.changeTheme(ThemeData.dark());
+    print("已设置为黑夜主题");
+  }
+  void clearDarkTheme(){
+    print("正在清空黑夜主题设置...");
+    _isDartTheme = false;
+    SPUtils.clearDarkTheme();
+    Get.changeTheme(ThemeData.light());
+    print("已设置为白天主题");
+  }
+  static Future<void> init() async{
+    print("正在初始化主题设置...");
+    if(SPUtils.getDarkTheme() != null){
+      _isDartTheme = true;
+      print("主题设置为：黑夜模式");
+    }else{
+      print("主题设置为：白天模式");
+    }
+
+  }
+}
