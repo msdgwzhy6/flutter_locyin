@@ -37,4 +37,14 @@ class SPUtils {
     return _spf!.getBool('key_dark_theme');
   }
 
+  /// Token
+  static void saveToken(String token) {
+    _spf!.setString('key_token',token);
+  }
+  static void  clearToken() {
+    _spf!.remove('key_token');
+  }
+  static String? getToken() {
+    return _spf!.getString('key_token');
+  }
 }

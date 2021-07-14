@@ -12,8 +12,13 @@ class DefaultApp {
   //运行app
   static void run() {
     print("正在启动应用程序...");
+
+    Get.lazyPut(()=>ConstantController());
+    Get.lazyPut(()=>LocaleController());
+    Get.lazyPut(()=>DarkThemeController());
+    /*Get.put(ConstantController());
     Get.put(LocaleController());
-    Get.put(DarkThemeController());
+    Get.put(DarkThemeController());*/
     WidgetsFlutterBinding.ensureInitialized();
     SPUtils.init().then((value) =>
         initApp().then ((value) =>
@@ -24,8 +29,9 @@ class DefaultApp {
   //程序初始化操作
   static Future<void> initApp() async{
     print("正在初始化应用程序...");
-    await LocaleController.init();
-    await DarkThemeController.init();
+    Get.find<ConstantController>().init();
+    Get.find<LocaleController>().init();
+    Get.find<DarkThemeController>().init();
   }
   static void afterRunApp(){
     Get.find<DarkThemeController>().isDarkTheme ? Get.changeTheme(ThemeData.dark()):Get.changeTheme(ThemeData.light());

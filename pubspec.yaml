@@ -33,8 +33,9 @@ dependencies:
   cupertino_icons: ^1.0.3
   oktoast: ^3.0.0
   get: ^4.1.4
-  webview_flutter: ^2.0.9
+  webview_flutter: ^2.0.10
   shared_preferences: ^2.0.6
+  dio: ^4.0.0
 
 dev_dependencies:
   flutter_test:

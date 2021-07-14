@@ -2,13 +2,49 @@ import 'package:flutter/material.dart';
 import 'package:flutter_locyin/utils/sputils.dart';
 import 'package:get/get.dart';
 
+// APP状态控制器
+class ConstantController extends GetxController{
+
+  String? _token;
+
+  String? get  token => _token;
+
+  String _baseUrl = "https://locyin.com/";
+
+  String get  baseUrl => _baseUrl;
+  void init(){
+    print("正在初始化 Token 设置...");
+    String? token = SPUtils.getToken();
+    if(token != null){
+      _token = token;
+      print("Token值：$token");
+    }else{
+      print("Token 不存在");
+    }
+  }
+
+  void setToken(String token) {
+
+    _token = token;
+    //语言的持久化存储
+    SPUtils.saveToken(token);
+
+  }
+  void clearToken(){
+    print("正在清空Token状态...");
+    _token = null;
+    //清除 Token 的持久化存储
+    SPUtils.clearToken();
+  }
+
+}
 class LocaleController extends GetxController {
 
-  static Locale? _locale;
+  Locale? _locale;
 
   Locale? get  locale => _locale;
 
-  static Future<void> init() async{
+  void init(){
     print("正在初始化语言模块...");
     var _localeString = SPUtils.getLocale();
     if(_localeString != null){
@@ -43,7 +79,7 @@ class LocaleController extends GetxController {
 //昼夜模式控制器
 class DarkThemeController extends GetxController{
 
-  static bool _isDartTheme = false;
+  bool _isDartTheme = false;
   bool get  isDarkTheme => _isDartTheme;
 
   void changeDarkTheme(){
@@ -67,7 +103,8 @@ class DarkThemeController extends GetxController{
     Get.changeTheme(ThemeData.light());
     print("已设置为白天主题");
   }
-  static Future<void> init() async{
+
+  void init(){
     print("正在初始化主题设置...");
     if(SPUtils.getDarkTheme() != null){
       _isDartTheme = true;
@@ -78,3 +115,4 @@ class DarkThemeController extends GetxController{
 
   }
 }
+
