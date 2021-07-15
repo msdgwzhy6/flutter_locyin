@@ -1,4 +1,8 @@
+import 'package:dio/dio.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_locyin/data/api/apis_service.dart';
+import 'package:flutter_locyin/data/model/user_entity.dart';
 import 'package:flutter_locyin/utils/sputils.dart';
 import 'package:get/get.dart';
 
@@ -9,9 +13,10 @@ class ConstantController extends GetxController{
 
   String? get  token => _token;
 
-  String _baseUrl = "https://locyin.com/";
+  String _baseUrl = kDebugMode?"http://192.168.10.10/api/v1/":"https://locyin.com/api/v1/";
 
   String get  baseUrl => _baseUrl;
+
   void init(){
     print("正在初始化 Token 设置...");
     String? token = SPUtils.getToken();
@@ -22,7 +27,6 @@ class ConstantController extends GetxController{
       print("Token 不存在");
     }
   }
-
   void setToken(String token) {
 
     _token = token;
@@ -36,7 +40,43 @@ class ConstantController extends GetxController{
     //清除 Token 的持久化存储
     SPUtils.clearToken();
   }
+}
+// 用户信息状态控制器
+class UserController extends GetxController{
 
+  UserEntity? _user;
+
+  UserEntity? get  user => _user;
+/*
+  void init(){
+    print("正在初始化用户状态...");
+    String? token = Get.find<ConstantController>().token;
+    print(token);
+    if(token != null){
+      getUserInfo();
+    }else{
+      print("未登录！");
+    }
+  }*/
+  Future<void> getUserInfo ()async{
+    print("开始获取用户信息...");
+    apiService.getUserInfo((UserEntity model) {
+      print("获取用户信息成功！");
+      _user = model;
+      update();
+    }, (DioError error) {
+      print("获取用户信息失败！");
+      //handleLaravelErrors(error);
+
+    },);
+  }
+  void setUser(UserEntity user) {
+    _user = user;
+    //语言的持久化存储
+  }
+  void clearUser(){
+    _user = null;
+  }
 }
 class LocaleController extends GetxController {
 

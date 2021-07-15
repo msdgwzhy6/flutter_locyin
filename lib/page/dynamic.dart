@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_locyin/page/menu/menu.dart';
 import 'package:flutter_locyin/router/router.dart';
+import 'package:flutter_locyin/utils/getx.dart';
 import 'package:get/get.dart';
 import 'package:flutter_locyin/utils/dio_manager.dart';
 class MyHomePage extends StatefulWidget {
@@ -47,6 +48,15 @@ class _MyHomePageState extends State<MyHomePage> {
       print(e);
     });
   }
+  void _testRegisterPage() {
+    Get.toNamed('/login');
+  }
+
+  void _logOut(){
+    Get.find<UserController>().clearUser();
+    Get.find<ConstantController>().clearToken();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -70,7 +80,7 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
       floatingActionButton: FloatingActionButton(
         //onPressed: _testCommonRouter,
-        onPressed: _testDioRequest,
+        onPressed: _logOut,
         tooltip: 'Increment',
         child: Icon(Icons.add),
       ),

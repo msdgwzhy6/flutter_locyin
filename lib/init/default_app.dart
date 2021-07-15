@@ -1,5 +1,8 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_locyin/common/lang/translation_service.dart';
+import 'package:flutter_locyin/data/api/apis_service.dart';
+import 'package:flutter_locyin/data/model/user_entity.dart';
 import 'package:flutter_locyin/page/index.dart';
 import 'package:flutter_locyin/page/menu/theme.dart';
 import 'package:flutter_locyin/router/router_map.dart';
@@ -14,24 +17,39 @@ class DefaultApp {
     print("正在启动应用程序...");
 
     Get.lazyPut(()=>ConstantController());
+    Get.lazyPut(()=>UserController());
     Get.lazyPut(()=>LocaleController());
     Get.lazyPut(()=>DarkThemeController());
-    /*Get.put(ConstantController());
-    Get.put(LocaleController());
-    Get.put(DarkThemeController());*/
     WidgetsFlutterBinding.ensureInitialized();
     SPUtils.init().then((value) =>
-        initApp().then ((value) =>
-            runApp(ToastUtils.init(MyApp()))
-          ).then((value) => afterRunApp())
+        initApp().then((value) => afterRunApp())
     );
   }
   //程序初始化操作
   static Future<void> initApp() async{
     print("正在初始化应用程序...");
     Get.find<ConstantController>().init();
-    Get.find<LocaleController>().init();
-    Get.find<DarkThemeController>().init();
+    if(Get.find<ConstantController>().token==null){
+
+      Get.find<ConstantController>().clearToken();
+      Get.find<UserController>().clearUser();
+
+      Get.find<LocaleController>().init();
+      Get.find<DarkThemeController>().init();
+      runApp(ToastUtils.init(MyApp()));
+    }else{
+      apiService.getUserInfo((UserEntity model) {
+        print("获取用户信息成功！");
+        Get.find<LocaleController>().init();
+        Get.find<DarkThemeController>().init();
+        Get.find<UserController>().setUser(model);
+        runApp(ToastUtils.init(MyApp()));
+      }, (DioError error) {
+        Get.find<ConstantController>().clearToken();
+        Get.find<UserController>().clearUser();
+        print("获取用户信息失败！");
+      },);
+    }
   }
   static void afterRunApp(){
     Get.find<DarkThemeController>().isDarkTheme ? Get.changeTheme(ThemeData.dark()):Get.changeTheme(ThemeData.light());
@@ -47,7 +65,6 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: MainHomePage(),
       getPages: RouteMap.getPages,
       defaultTransition: Transition.rightToLeft,
       /*localizationsDelegates: [

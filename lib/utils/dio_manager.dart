@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:flutter_locyin/utils/handle_laravel_errors.dart';
 import 'package:flutter_locyin/utils/toast.dart';
 import 'package:flutter_locyin/utils/sputils.dart';
 import 'package:get/get.dart' as getx;
@@ -89,7 +90,9 @@ class ErrorInterceptor extends Interceptor {
   Future onError(DioError error , ErrorInterceptorHandler handler) async {
     print('ERROR[${error.response?.statusCode}] => PATH: ${error.requestOptions.path}');
     if (error.response != null && error.response!.statusCode == 401) {
-      SPUtils.clearToken();
+      getx.Get.find<ConstantController>().clearToken();
+      getx.Get.find<UserController>().clearUser();
+      getx.Get.toNamed("/login");
       //getx.Get.offAll(() => LoginPage());
     }
     switch (error.type) {
@@ -106,7 +109,7 @@ class ErrorInterceptor extends Interceptor {
         print("响应超时");
         break;
       case DioErrorType.response:
-        //handler_laravel_errors(error);
+        handleLaravelErrors(error);
         print("出现异常");
         break;
       case DioErrorType.cancel:
@@ -120,6 +123,7 @@ class ErrorInterceptor extends Interceptor {
     }
     return super.onError(error, handler);
   }
+}
 /*onError(DioError error , ErrorInterceptorHandler handler) async {
     print(error);
     //判读异常状态  401未登录过期或者未登录状态的异常
@@ -145,7 +149,7 @@ class ErrorInterceptor extends Interceptor {
       }
     }
     super.onError(error, handler);*/
-}
+
 
 /*Future<String> getToken() async {
     //获取当前的refreshToken，一般后台会在登录后附带一个刷新Token用的reToken
