@@ -14,9 +14,6 @@ class RouteMap {
     GetPage(name: '/', page: (){
       return Get.find<UserController>().user==null?LoginCodePage(): MainHomePage();
     }),
-    /*GetPage(name: '/index', page: (){
-      return Get.find<UserController>().user==null?LoginCodePage(): MainHomePage();
-    }),*/
     GetPage(name: '/menu/settings', page: () => SettingsPage()),
     GetPage(name: '/menu/settings/theme', page: () => ThemePage()),
     GetPage(name: '/menu/settings/language', page: () => LanguagePage()),

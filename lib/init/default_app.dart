@@ -1,12 +1,9 @@
-import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_locyin/common/lang/translation_service.dart';
-import 'package:flutter_locyin/data/api/apis_service.dart';
-import 'package:flutter_locyin/data/model/user_entity.dart';
 import 'package:flutter_locyin/page/index.dart';
-import 'package:flutter_locyin/page/menu/theme.dart';
-import 'package:flutter_locyin/router/router_map.dart';
 import 'package:flutter_locyin/utils/getx.dart';
+
+import 'package:flutter_locyin/router/router_map.dart';
 import 'package:flutter_locyin/utils/sputils.dart';
 import 'package:flutter_locyin/utils/toast.dart';
 import 'package:get/get.dart';
@@ -21,38 +18,21 @@ class DefaultApp {
     Get.lazyPut(()=>LocaleController());
     Get.lazyPut(()=>DarkThemeController());
     WidgetsFlutterBinding.ensureInitialized();
-    SPUtils.init().then((value) =>
-        initApp().then((value) => afterRunApp())
-    );
+    beforeInitApp().then((value) => initApp());
+
+  }
+
+  static Future<void> beforeInitApp() async{
+    await SPUtils.init().then((value) => Get.find<ConstantController>().init());
+    await Get.find<UserController>().init();
   }
   //程序初始化操作
-  static Future<void> initApp() async{
+  static void initApp(){
     print("正在初始化应用程序...");
-    Get.find<ConstantController>().init();
-    if(Get.find<ConstantController>().token==null){
+    Get.find<LocaleController>().init();
+    Get.find<DarkThemeController>().init();
+    runApp(ToastUtils.init(MyApp()));
 
-      Get.find<ConstantController>().clearToken();
-      Get.find<UserController>().clearUser();
-
-      Get.find<LocaleController>().init();
-      Get.find<DarkThemeController>().init();
-      runApp(ToastUtils.init(MyApp()));
-    }else{
-      apiService.getUserInfo((UserEntity model) {
-        print("获取用户信息成功！");
-        Get.find<LocaleController>().init();
-        Get.find<DarkThemeController>().init();
-        Get.find<UserController>().setUser(model);
-        runApp(ToastUtils.init(MyApp()));
-      }, (DioError error) {
-        Get.find<ConstantController>().clearToken();
-        Get.find<UserController>().clearUser();
-        print("获取用户信息失败！");
-      },);
-    }
-  }
-  static void afterRunApp(){
-    Get.find<DarkThemeController>().isDarkTheme ? Get.changeTheme(ThemeData.dark()):Get.changeTheme(ThemeData.light());
   }
 }
 
@@ -62,9 +42,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       title: '骆寻',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
+      theme:Get.find<DarkThemeController>().isDarkTheme ? ThemeData.dark():ThemeData.light(),
+      home: MainHomePage(),
       getPages: RouteMap.getPages,
       defaultTransition: Transition.rightToLeft,
       /*localizationsDelegates: [

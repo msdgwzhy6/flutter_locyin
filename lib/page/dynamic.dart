@@ -55,6 +55,7 @@ class _MyHomePageState extends State<MyHomePage> {
   void _logOut(){
     Get.find<UserController>().clearUser();
     Get.find<ConstantController>().clearToken();
+    Get.offAllNamed("/");
   }
 
   @override

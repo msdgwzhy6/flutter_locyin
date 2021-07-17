@@ -49,8 +49,8 @@ class ApiService {
     });
   }
   /// 获取用户个人信息
-  void getUserInfo(Function callback, Function errorCallback) async {
-    BaseNetWork.instance.dio.get(Apis.USER_INFO).then((response) {
+  Future<void> getUserInfo(Function callback, Function errorCallback) async {
+    await BaseNetWork.instance.dio.get(Apis.USER_INFO).then((response) {
       print(response);
       callback(UserEntity().fromJson(response.data));
     }).catchError((e) {

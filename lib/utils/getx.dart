@@ -19,7 +19,7 @@ class ConstantController extends GetxController{
 
   void init(){
     print("正在初始化 Token 设置...");
-    String? token = SPUtils.getToken();
+    String? token =  SPUtils.getToken();
     if(token != null){
       _token = token;
       print("Token值：$token");
@@ -47,20 +47,20 @@ class UserController extends GetxController{
   UserEntity? _user;
 
   UserEntity? get  user => _user;
-/*
-  void init(){
+
+  Future<void> init() async{
     print("正在初始化用户状态...");
-    String? token = Get.find<ConstantController>().token;
+    String? token = ConstantController().token;
     print(token);
     if(token != null){
-      getUserInfo();
+      await UserController().getUserInfo();
     }else{
-      print("未登录！");
+      print("用户没有登录！");
     }
-  }*/
-  Future<void> getUserInfo ()async{
+  }
+  Future<void> getUserInfo() async{
     print("开始获取用户信息...");
-    apiService.getUserInfo((UserEntity model) {
+    await apiService.getUserInfo((UserEntity model) {
       print("获取用户信息成功！");
       _user = model;
       update();
@@ -78,6 +78,7 @@ class UserController extends GetxController{
     _user = null;
   }
 }
+//语言
 class LocaleController extends GetxController {
 
   Locale? _locale;

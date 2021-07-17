@@ -268,23 +268,11 @@ class _LoginPage2State extends State<LoginCodePage> {
   }
   void _login(String value){
     _showDialog();
-    apiService.loginBycodes((Response response) {
-        Navigator.pop(context);
-        //print(response.statusCode);
+    apiService.loginBycodes((Response response) async {
         getx.Get.find<ConstantController>().setToken('Bearer ' + response.data['access_token']);
-        //Get.off(() => OnBoardingPage());
-        //getx.Get.find<UserController>().getUserInfo().then((value) => getx.Get.toNamed("/index"));
-        apiService.getUserInfo((UserEntity model) {
-          print("获取用户信息成功！");
-          ToastUtils.success("登录成功");
-          getx.Get.to(() => MainHomePage());
-        }, (DioError error) {
-          setState(() {
-            _pageType = PageType.phonePage;
-          });
-          ToastUtils.success("登录失败，请重试！");
-          print("获取用户信息失败！");
-        },);
+        await getx.Get.find<UserController>().getUserInfo();
+        Navigator.pop(context);
+        getx.Get.offAndToNamed("/");
     }, (DioError error) {
         Navigator.of(context).pop();
         handleLaravelErrors(error);
