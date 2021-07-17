@@ -17,7 +17,19 @@ class ConstantController extends GetxController{
 
   String get  baseUrl => _baseUrl;
 
-  void init(){
+  String _advantageUrl = "https://flutter.dev";
+
+  String get  advantageUrl => _advantageUrl;
+
+  String _advantageImageUrl = "https://locyin.oss-cn-beijing.aliyuncs.com/apps/luoxun_flutter/images/splash.png";
+
+  String get  advantageImageUrl => _advantageImageUrl;
+
+  int _counter = 5;
+
+  int get counter => _counter;
+
+  void initToken(){
     print("正在初始化 Token 设置...");
     String? token =  SPUtils.getToken();
     if(token != null){
@@ -40,6 +52,12 @@ class ConstantController extends GetxController{
     //清除 Token 的持久化存储
     SPUtils.clearToken();
   }
+
+  void decrement(){
+    _counter--;
+    update();
+  }
+
 }
 // 用户信息状态控制器
 class UserController extends GetxController{

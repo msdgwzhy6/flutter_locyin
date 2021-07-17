@@ -272,7 +272,7 @@ class _LoginPage2State extends State<LoginCodePage> {
         getx.Get.find<ConstantController>().setToken('Bearer ' + response.data['access_token']);
         await getx.Get.find<UserController>().getUserInfo();
         Navigator.pop(context);
-        getx.Get.offAndToNamed("/");
+        getx.Get.offAndToNamed("/index");
     }, (DioError error) {
         Navigator.of(context).pop();
         handleLaravelErrors(error);

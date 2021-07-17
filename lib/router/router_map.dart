@@ -1,4 +1,5 @@
 import 'package:flutter_locyin/page/User/login_code.dart';
+import 'package:flutter_locyin/page/advantage.dart';
 import 'package:flutter_locyin/page/menu/about.dart';
 import 'package:flutter_locyin/page/menu/language.dart';
 import 'package:flutter_locyin/page/menu/settings.dart';
@@ -11,7 +12,8 @@ import 'package:flutter_locyin/widgets/web_view_page.dart';
 
 class RouteMap {
   static List<GetPage> getPages = [
-    GetPage(name: '/', page: (){
+    GetPage(name: '/', page: () => AdvantagePage()),
+    GetPage(name: '/index', page: (){
       return Get.find<UserController>().user==null?LoginCodePage(): MainHomePage();
     }),
     GetPage(name: '/menu/settings', page: () => SettingsPage()),

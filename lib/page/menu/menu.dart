@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_locyin/page/menu/about.dart';
 import 'package:flutter_locyin/page/menu/settings.dart';
+import 'package:flutter_locyin/utils/getx.dart';
 import 'package:flutter_locyin/utils/toast.dart';
+import 'package:get/get.dart';
 
 class MenuDrawer extends StatelessWidget {
 
@@ -94,7 +96,7 @@ class MenuDrawer extends StatelessWidget {
                         leading: Icon(Icons.logout),
                         title: Text("登出"),
                         onTap: () {
-                          ToastUtils.toast("退出登录");
+                          _logOut();
                         },
                       )
                     ],
@@ -104,4 +106,10 @@ class MenuDrawer extends StatelessWidget {
             ),
           ));
   }
+  void _logOut(){
+    Get.find<UserController>().clearUser();
+    Get.find<ConstantController>().clearToken();
+    Get.offAllNamed("/index");
+  }
 }
+

@@ -23,7 +23,7 @@ class DefaultApp {
   }
 
   static Future<void> beforeInitApp() async{
-    await SPUtils.init().then((value) => Get.find<ConstantController>().init());
+    await SPUtils.init().then((value) => Get.find<ConstantController>().initToken());
     await Get.find<UserController>().init();
   }
   //程序初始化操作
@@ -43,7 +43,6 @@ class MyApp extends StatelessWidget {
     return GetMaterialApp(
       title: '骆寻',
       theme:Get.find<DarkThemeController>().isDarkTheme ? ThemeData.dark():ThemeData.light(),
-      home: MainHomePage(),
       getPages: RouteMap.getPages,
       defaultTransition: Transition.rightToLeft,
       /*localizationsDelegates: [

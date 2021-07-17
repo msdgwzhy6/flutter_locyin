@@ -39,6 +39,7 @@ dependencies:
   flutter_spinkit: ^5.0.0
   flutter_verification_box: ^2.0.0
   flutter_native_splash: ^1.2.0
+  url_launcher: ^6.0.9
 
 dev_dependencies:
   flutter_test:
