@@ -50,10 +50,10 @@ class UserController extends GetxController{
 
   Future<void> init() async{
     print("正在初始化用户状态...");
-    String? token = ConstantController().token;
+    String? token = Get.find<ConstantController>().token;
     print(token);
     if(token != null){
-      await UserController().getUserInfo();
+      await getUserInfo();
     }else{
       print("用户没有登录！");
     }
