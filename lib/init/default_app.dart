@@ -23,7 +23,7 @@ class DefaultApp {
   }
 
   static Future<void> beforeInitApp() async{
-    await SPUtils.init().then((value) => Get.find<ConstantController>().initToken());
+    await SPUtils.init().then((value) => Get.find<ConstantController>().init());
     await Get.find<UserController>().init();
   }
   //程序初始化操作

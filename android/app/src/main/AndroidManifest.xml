@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.locyin.flutter_locyin">
    <application
-        android:label="flutter_locyin"
+        android:label="骆寻"
         android:icon="@mipmap/ic_launcher">
         <activity
             android:name=".MainActivity"

@@ -29,6 +29,14 @@ class ConstantController extends GetxController{
 
   int get counter => _counter;
 
+  bool _hasAgreedPrivacy = false;
+
+  bool get hasAgreedPrivacy => _hasAgreedPrivacy;
+
+  void init(){
+    initToken();
+    initPrivacy();
+  }
   void initToken(){
     print("正在初始化 Token 设置...");
     String? token =  SPUtils.getToken();
@@ -38,6 +46,15 @@ class ConstantController extends GetxController{
     }else{
       print("Token 不存在");
     }
+  }
+
+  void initPrivacy(){
+    print("正在初始化隐私设置...");
+    bool? _hasAgreed = SPUtils.getPrivacy();
+    if(_hasAgreed==true){
+      _hasAgreedPrivacy = true;
+    }
+    print("初始化隐私设置完成");
   }
   void setToken(String token) {
 
@@ -56,6 +73,11 @@ class ConstantController extends GetxController{
   void decrement(){
     _counter--;
     update();
+  }
+  void agreePrivacy() {
+    _hasAgreedPrivacy = true;
+    //隐私的持久化存储
+    SPUtils.savePrivacy();
   }
 
 }

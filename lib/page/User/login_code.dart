@@ -6,6 +6,7 @@ import 'package:flutter_locyin/utils/handle_laravel_errors.dart';
 import 'package:flutter_locyin/utils/sputils.dart';
 import 'package:flutter_locyin/widgets/bg_widget.dart';
 import 'package:dio/dio.dart';
+import 'package:flutter_locyin/widgets/privacy.dart';
 import 'package:get/get.dart' as getx;
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:flutter_locyin/utils/toast.dart';
@@ -49,6 +50,8 @@ class _LoginPage2State extends State<LoginCodePage> {
     super.initState();
     //_selectedMenu(PinEntryType.underline);
     _tapGestureRecognizer.onTap = myTap;
+    //注册一个回调函数_showPrivacy
+    WidgetsBinding.instance!.addPostFrameCallback((_) => _showPrivacy());
   }
 
   @override
@@ -60,10 +63,18 @@ class _LoginPage2State extends State<LoginCodePage> {
   void myTap(){
     print("myTap run 。。。。");
   }
+  void _showPrivacy(){
+    if (!getx.Get.find<ConstantController>().hasAgreedPrivacy) {
+      PrivacyUtils.showPrivacyDialog(context, onAgreeCallback: () {
+        Navigator.of(context).pop();
+        getx.Get.find<ConstantController>().agreePrivacy();
+        ToastUtils.success("已同意使用协议和隐私声明");
+      });
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
       resizeToAvoidBottomInset: false,
       key: _gk,

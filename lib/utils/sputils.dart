@@ -47,4 +47,16 @@ class SPUtils {
   static String? getToken() {
     return _spf!.getString('key_token');
   }
+
+  ///隐私
+  static void savePrivacy() {
+    _spf!.setBool('key_privacy', true);
+  }
+  static void  clearPrivacy() {
+    _spf!.remove('key_privacy');
+  }
+  static bool? getPrivacy() {
+    return _spf!.getBool('key_privacy');
+  }
+
 }
