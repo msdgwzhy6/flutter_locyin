@@ -81,7 +81,7 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
       floatingActionButton: FloatingActionButton(
         //onPressed: _testCommonRouter,
-        onPressed: _logOut,
+        onPressed: _testWebRouter,
         tooltip: 'Increment',
         child: Icon(Icons.add),
       ),
