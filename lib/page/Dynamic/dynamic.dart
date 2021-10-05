@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
 import 'package:flutter_locyin/data/model/dynamic_list_entity.dart';
 import 'package:flutter_locyin/page/Dynamic/app_bar.dart';
-import 'package:flutter_locyin/page/menu/menu.dart';
+import 'package:flutter_locyin/page/Menu/menu.dart';
 import 'package:flutter_locyin/utils/back_to_top.dart';
 import 'package:flutter_locyin/utils/getx.dart';
 import 'package:flutter_locyin/widgets/lists/dynamic_item.dart';

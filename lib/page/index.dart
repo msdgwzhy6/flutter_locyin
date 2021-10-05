@@ -1,6 +1,6 @@
 import 'package:badges/badges.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_locyin/page/Dynamic/Dynamic.dart';
+import 'package:flutter_locyin/page/Dynamic/dynamic.dart';
 import 'package:flutter_locyin/page/find.dart';
 import 'package:flutter_locyin/page/mine.dart';
 import 'package:flutter_locyin/utils/getx.dart';

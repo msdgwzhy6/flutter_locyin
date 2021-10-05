@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_locyin/page/menu/menu.dart';
+import 'package:flutter_locyin/page/Menu/menu.dart';
 import 'package:flutter_locyin/router/router.dart';
 import 'package:flutter_locyin/utils/getx.dart';
 import 'package:get/get.dart';

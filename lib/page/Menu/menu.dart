@@ -1,7 +1,7 @@
 import 'package:extended_image/extended_image.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_locyin/page/menu/about.dart';
-import 'package:flutter_locyin/page/menu/settings.dart';
+import 'package:flutter_locyin/page/Menu/about.dart';
+import 'package:flutter_locyin/page/Menu/settings.dart';
 import 'package:flutter_locyin/utils/getx.dart';
 import 'package:flutter_locyin/utils/toast.dart';
 import 'package:get/get.dart';
